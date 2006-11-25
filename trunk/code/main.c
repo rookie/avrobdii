@@ -64,14 +64,14 @@ int main(void)
 	
 
 	flash_init();
-	sprintf(str,"Stern Tech");
+	sprintf_P(str,"Stern Tech");
 	LCD_print1(str,3);
 	LCD_update();
 
 	//turn on interrupts and let games begin
 	ENABLE_INTERRUPTS();
 
-	//printf("hello world %f\n",87.5);		
+	//printf_P("hello world %f\n",87.5);		
 
 	/*	\
 	msg[0]='A';
@@ -83,11 +83,11 @@ int main(void)
 	}
 
 */
-	printf("OBDII running\n\r");
+	printf_P("OBDII running\n\r");
 	LCD_clear();
-	sprintf(str,"Checking ECM");	
+	sprintf_P(str,"Checking ECM");	
 	LCD_print1(str,0);
-	sprintf(str,"Turn Key On");
+	sprintf_P(str,"Turn Key On");
 	LCD_print2(str,0);
 	
 	KnobRead();
@@ -100,7 +100,7 @@ int main(void)
 		obdII_run(temp,reset);
 		LCD_update();
 		reset=0;
-		//printf("battery %f\n\r",getBattery());
+		//printf_P("battery %f\n\r",getBattery());
 /*
 		if (getBattery()<10.5)
 		{
@@ -124,7 +124,7 @@ int main(void)
 			while(!done)
 			{
 				//Do menu
-				sprintf(str," Exit");
+				sprintf_P(str," Exit");
 				if(knobtemp & 0x01)
 				{
 					 LCD_print2(str,0);
@@ -133,7 +133,7 @@ int main(void)
 					str[0]=0x7E;
 					LCD_print1(str,0);
 				}
-				sprintf(str," Clear Code");
+				sprintf_P(str," Clear Code");
 				if(knobtemp & 0x01)
 				{
 					 str[0]=0x7E;
@@ -147,29 +147,29 @@ int main(void)
 					while(KnobSw1());
 					if(knobtemp & 0x01)
 					{
-						sprintf(str,"Clearing Codes");
+						sprintf_P(str,"Clearing Codes");
 						LCD_print1(str,0);
-						sprintf(str," ");
+						sprintf_P(str," ");
 						LCD_print2(str,0);
 						temp=obdII_clear_codes();
 						if (temp==0)
 							temp=obdII_clear_codes();
 						if (temp)
 						{
-							sprintf(str,"Codes cleared");
+							sprintf_P(str,"Codes cleared");
 						}
 						else
 						{
-							sprintf(str,"Error Clearing");
+							sprintf_P(str,"Error Clearing");
 						}
 						LCD_print1(str,0);
 						if (temp)
 						{
-							sprintf(str," ");
+							sprintf_P(str," ");
 						}
 						else
 						{
-							sprintf(str,"Codes");
+							sprintf_P(str,"Codes");
 						}
 						LCD_print2(str,0);
 						obdII_leds_off();
@@ -180,9 +180,9 @@ int main(void)
 					} else
 					{
 						done=1;
-						sprintf(str, "Wait");
+						sprintf_P(str, "Wait");
 						LCD_print1(str,0);
-						sprintf(str, "Reading data");
+						sprintf_P(str, "Reading data");
 						LCD_print2(str,0);
 						reset=1;
 					}

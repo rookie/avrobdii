@@ -154,7 +154,7 @@ void LCD_print1(UBYTE *data, UBYTE pos)
 	if (pos>LCD_WIDTH)
 		return;
 
-	sprintf(str1,"%s",data);
+	sprintf_P(str1,"%s",data);
 	line1=strlen(str1);;
 	addr=0x80+pos;
 	i=0;
@@ -187,7 +187,7 @@ void LCD_print2(UBYTE *data, UBYTE pos)
 	addr=0xC0+pos;
 	LCD_Send_command(addr);
 	i=0;
-	sprintf(str2,"%s",data);
+	sprintf_P(str2,"%s",data);
 	line2=strlen(str2);;
 	while (data[i] !=0 && i<(LCD_WIDTH-pos))// && addr<=(0xC0+LCD_WIDTH))
 	{
@@ -210,7 +210,7 @@ void LCD_update()
 	UBYTE len,i;
 	static UBYTE temp=0;
 
-	//printf("LCD timer %lu\n\r",lcd_timer);
+	//printf_P("LCD timer %lu\n\r",lcd_timer);
 //	if(lcd_timer<2)
 //		return;
 	

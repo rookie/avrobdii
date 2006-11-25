@@ -71,7 +71,7 @@ UWORD Xmodem_CRC(UBYTE *data)
 
 //void xprint()
 //{
-//	printf("Last packet =%X ~%X expected %X ,%X\n\r",Xpacket,Xpacket_comp,expected, Xpacket^Xpacket_comp);
+//	printf_P("Last packet =%X ~%X expected %X ,%X\n\r",Xpacket,Xpacket_comp,expected, Xpacket^Xpacket_comp);
 //}
 //These routines are to recieve data using the XModem protocal
 
@@ -477,11 +477,11 @@ void Xmodem_send_next(void)
 
 void Xmodem_debug()
 {
-	printf("\n\rExpected packet =%d\n\r",expected);
-	printf("Host sent packet = %d\n\r",Xpacket);
-	printf("Host compilment packet = %d\n\r",Xpacket_comp);
-	printf("Calculated check sum = %X\n\r",Check_sum_cal);
-	printf("Recieved check sum =%X\n\r",Check_sum_recv);
+	printf_P("\n\rExpected packet =%d\n\r",expected);
+	printf_P("Host sent packet = %d\n\r",Xpacket);
+	printf_P("Host compilment packet = %d\n\r",Xpacket_comp);
+	printf_P("Calculated check sum = %X\n\r",Check_sum_cal);
+	printf_P("Recieved check sum =%X\n\r",Check_sum_recv);
 }
 
 	
