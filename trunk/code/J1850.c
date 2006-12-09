@@ -255,13 +255,13 @@ INT J1850test(void)
 
 	if (J1850_dataWrite!=J1850_dataRead)
 	{
-	    printf_P("\nPWMSTATE=%d\n",PWMState);
-	    printf_P("J1850_DATA %d(us) ",J1850DataTime[J1850_dataRead]/2);
+	    printf_P(PSTR("\nPWMSTATE=%d\n"),PWMState);
+	    printf_P(PSTR("J1850_DATA %d(us) "),J1850DataTime[J1850_dataRead]/2);
 		for (i=0; i<J1850DataBytes[J1850_dataRead]; i++)
 		{
 			UINT8 d;
 			d=J1850Data[J1850_dataRead][i];
-			printf_P("%X ",d);	
+			printf_P(PSTR("%X "),d);	
 		}
 		J1850_dataRead++;
 		J1850_dataRead=J1850_dataRead &	(J1850_ARRAY_PKTS-1);
@@ -289,13 +289,13 @@ INT pwm_get(UINT8 *ptr, UINT8 count, UINT16 time_out_ms)
 	{
 	 	if (J1850_dataWrite!=J1850_dataRead)
 		{
-		    //printf_P("\nPWMSTATE=%d\n",PWMState);
-		    //printf_P("J1850_DATA %d(us) ",J1850DataTime[J1850_dataRead]/2);
+		    //printf_P(PSTR("\nPWMSTATE=%d\n",PWMState);
+		    //printf_P(PSTR("J1850_DATA %d(us) ",J1850DataTime[J1850_dataRead]/2);
 			for (i=0; i<J1850DataBytes[J1850_dataRead] && i<count; i++)
 			{
 				//UINT8 d;
 				*ptr++=J1850Data[J1850_dataRead][i];
-				//printf_P("%X ",d);	
+				//printf_P(PSTR("%X ",d);	
 			}
 			J1850_dataRead++;
 			J1850_dataRead=J1850_dataRead &	(J1850_ARRAY_PKTS-1);
@@ -407,7 +407,7 @@ INT pwm_put(UINT8 *data, UINT8 count, UINT16 time_out_ms)
 
 
 
-
+/*
 //does CRC calculations
 UINT8 crc(UINT8 *data, UINT8 len)
 {
@@ -448,4 +448,4 @@ UINT8 crc(UINT8 *data, UINT8 len)
 		}
 	}
 	return ~result;
-}
+}*/

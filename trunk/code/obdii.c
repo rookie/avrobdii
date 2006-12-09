@@ -41,14 +41,14 @@ UBYTE obdII_clear_codes()
 	
 	if (ret==0)
 	{
-		printf_P("No response to clear codes\n\r");
+		printf_P(PSTR("No response to clear codes\n\r"));
 		return 0;
 	}
 	for (i=0; i<ret; i++)
 	{
 		if (data[i].data[0]==0x44)
 		{
-			printf_P("ECM %X codes cleared\n\r",data[i].addr);
+			printf_P(PSTR("ECM %X codes cleared\n\r"),data[i].addr);
 		}
 	}
 	return ret;
@@ -62,234 +62,234 @@ UBYTE pidLabels(UBYTE pid, UBYTE *str, UBYTE nStr, UBYTE *str2, UBYTE nStr2)
  	switch (pid)
 	{
 		case 0x03:
-			sprintf_P(str,"Fuel Sys1: ");
-			sprintf_P(str2,"Fuel Sys2: ");
+			sprintf_P(str,PSTR("Fuel Sys1: "));
+			sprintf_P(str2,PSTR("Fuel Sys2: "));
 			break;					
 		case 0x04:
-			sprintf_P(str,"Load ");
+			sprintf_P(str,PSTR("Load "));
 			break;
 		case 0x05: 
-			sprintf_P(str,"ECT ");
+			sprintf_P(str,PSTR("ECT "));
 			break;
 		case 0x06: 
-			sprintf_P(str,"SHRTFT1: ");
+			sprintf_P(str,PSTR("SHRTFT1: "));
 			if (pid1D & 0x30)
 			{
-				sprintf_P(str2,"SHRTFT3: ");
+				sprintf_P(str2,PSTR("SHRTFT3: "));
 			}
 			break;
 		case 0x07: 
-			sprintf_P(str,"LONGFT1: ");
+			sprintf_P(str,PSTR("LONGFT1: "));
 			if (pid1D & 0x30)
 			{
-				sprintf_P(str2,"LONGFT3: ");
+				sprintf_P(str2,PSTR("LONGFT3: "));
 			}
 			break;
 		case 0x08: 
-			sprintf_P(str,"SHRTFT2: ");
+			sprintf_P(str,PSTR("SHRTFT2: "));
 			if (pid1D & 0xC0)
 			{
-				sprintf_P(str2,"SHRTFT4: ");
+				sprintf_P(str2,PSTR("SHRTFT4: "));
 			}
 			break;
 		case 0x09: 
-			sprintf_P(str,"LONGFT2: ");
+			sprintf_P(str,PSTR("LONGFT2: "));
 			if (pid1D & 0xC0)
 			{
-				sprintf_P(str2,"LONGFT4: ");
+				sprintf_P(str2,PSTR("LONGFT4: "));
 			}
 			break;
 		case 0x0A: 
-			sprintf_P(str,"Fuel P: ");
+			sprintf_P(str,PSTR("Fuel P: "));
 			break;
 		case 0x0B: 
-			sprintf_P(str,"MAP: ");
+			sprintf_P(str,PSTR("MAP: "));
 			break;
 		case 0x0C: 
-			sprintf_P(str,"RPM: ");
+			sprintf_P(str,PSTR("RPM: "));
 			break;
 		case 0x0D: 
-			sprintf_P(str,"VSS: ");
+			sprintf_P(str,PSTR("VSS: "));
 			break;
 		case 0x0E: 
-			sprintf_P(str,"Spark Adv: ");
+			sprintf_P(str,PSTR("Spark Adv: "));
 			break;
 		case 0x0F: 
-			sprintf_P(str,"IAT: ");
+			sprintf_P(str,PSTR("IAT: "));
 			break;
 		case 0x10: 
-			sprintf_P(str,"MAF: ");
+			sprintf_P(str,PSTR("MAF: "));
 			break;
 		case 0x11: 
-			sprintf_P(str,"TPS: ");
+			sprintf_P(str,PSTR("TPS: "));
 			break;
 		case 0x12: 
-   			sprintf_P(str,"Air Stat: ");
+   			sprintf_P(str,PSTR("Air Stat: "));
 			break;
 		case 0x14: 
-			sprintf_P(str,"O2 B1S1: ");
-			sprintf_P(str2,"O2 B1S1: ");
+			sprintf_P(str,PSTR("O2 B1S1: "));
+			sprintf_P(str2,PSTR("O2 B1S1: "));
 			break;
 		case 0x15: 
-			sprintf_P(str,"O2 B1S2: ");
-			sprintf_P(str2,"O2 B1S2: ");
+			sprintf_P(str,PSTR("O2 B1S2: "));
+			sprintf_P(str2,PSTR("O2 B1S2: "));
 			break;
 		case 0x16: 
-			sprintf_P(str,"O2 B1S3: ");
-			sprintf_P(str2,"O2 B1S3: ");
+			sprintf_P(str,PSTR("O2 B1S3: "));
+			sprintf_P(str2,PSTR("O2 B1S3: "));
 			break;
 		case 0x17: 
-			sprintf_P(str,"O2 B1S4: ");
-			sprintf_P(str2,"O2 B1S4: ");
+			sprintf_P(str,PSTR("O2 B1S4: "));
+			sprintf_P(str2,PSTR("O2 B1S4: "));
 			break;
 		case 0x18: 
-			sprintf_P(str,"O2 B2S1: ");
-			sprintf_P(str2,"O2 B2S1: ");
+			sprintf_P(str,PSTR("O2 B2S1: "));
+			sprintf_P(str2,PSTR("O2 B2S1: "));
 			break;
 		case 0x19: 
-			sprintf_P(str,"O2 B2S2: ");
-			sprintf_P(str2,"O2 B2S2: ");
+			sprintf_P(str,PSTR("O2 B2S2: "));
+			sprintf_P(str2,PSTR("O2 B2S2: "));
 			break;
 		case 0x1A: 
-			sprintf_P(str,"O2 B2S3: ");
-			sprintf_P(str2,"O2 B2S3: ");
+			sprintf_P(str,PSTR("O2 B2S3: "));
+			sprintf_P(str2,PSTR("O2 B2S3: "));
 			break;
 		case 0x1B: 
-			sprintf_P(str,"O2 B2S4: ");
-			sprintf_P(str2,"O2 B2S4: ");
+			sprintf_P(str,PSTR("O2 B2S4: "));
+			sprintf_P(str2,PSTR("O2 B2S4: "));
 			break;
 		case 0x1C: 
-			sprintf_P(str,"OBDSUP: ");
+			sprintf_P(str,PSTR("OBDSUP: "));
 			break;
 		case 0x1E: 
-			sprintf_P(str,"PTO_STAT: ");
+			sprintf_P(str,PSTR("PTO_STAT: "));
 			break;
 		case 0x1F: 
-			sprintf_P(str,"RunTime: ");
+			sprintf_P(str,PSTR("RunTime: "));
 			break;
 		case 0x21: 
-			sprintf_P(str,"MIL_dist: ");
+			sprintf_P(str,PSTR("MIL_dist: "));
 			break;
 		case 0x22: 
-			sprintf_P(str,"FRP: ");
+			sprintf_P(str,PSTR("FRP: "));
 			break;
 		case 0x23: 
-			sprintf_P(str,"FRP: ");
+			sprintf_P(str,PSTR("FRP: "));
 			break;
 		case 0x24:
 		case 0x34: 
-			sprintf_P(str,"EQ_RAT11: ");
-			sprintf_P(str2,"O2 S11: ");
+			sprintf_P(str,PSTR("EQ_RAT11: "));
+			sprintf_P(str2,PSTR("O2 S11: "));
    			break;
 		case 0x25: 
 		case 0x35:
-			sprintf_P(str,"EQ_RAT12: ");
-			sprintf_P(str2,"O2 S12: ");
+			sprintf_P(str,PSTR("EQ_RAT12: "));
+			sprintf_P(str2,PSTR("O2 S12: "));
    			break;	
    		case 0x26:
    		case 0x36: 
-			sprintf_P(str,"EQ_RAT13: ");
-			sprintf_P(str2,"O2 S13: ");
+			sprintf_P(str,PSTR("EQ_RAT13: "));
+			sprintf_P(str2,PSTR("O2 S13: "));
    			break;
 		case 0x27: 
 		case 0x37:
-			sprintf_P(str,"EQ_RAT14: ");
-			sprintf_P(str2,"O2 S14: ");
+			sprintf_P(str,PSTR("EQ_RAT14: "));
+			sprintf_P(str2,PSTR("O2 S14: "));
    			break;
 		case 0x28: 
 		case 0x38:
-			sprintf_P(str,"EQ_RAT21: ");
-			sprintf_P(str2,"O2 S21: ");
+			sprintf_P(str,PSTR("EQ_RAT21: "));
+			sprintf_P(str2,PSTR("O2 S21: "));
    			break;
 		case 0x29:
 		case 0x39:
-			sprintf_P(str,"EQ_RAT22: ");
-			sprintf_P(str2,"O2 S22: ");
+			sprintf_P(str,PSTR("EQ_RAT22: "));
+			sprintf_P(str2,PSTR("O2 S22: "));
    			break;
 		case 0x2A: 
 		case 0x3A:
-			sprintf_P(str,"EQ_RAT23: ");
-			sprintf_P(str2,"O2 S23: ");
+			sprintf_P(str,PSTR("EQ_RAT23: "));
+			sprintf_P(str2,PSTR("O2 S23: "));
    			break;
 		case 0x2B: 
 		case 0x3B:
-			sprintf_P(str,"EQ_RAT24: ");
-			sprintf_P(str2,"O2 S24: ");
+			sprintf_P(str,PSTR("EQ_RAT24: "));
+			sprintf_P(str2,PSTR("O2 S24: "));
    			break;
    		case 0x2C: 
-			sprintf_P(str,"EGR: ");
+			sprintf_P(str,PSTR("EGR: "));
 			break;
 		case 0x2D: 
-			sprintf_P(str,"EGR_ERR: ");
+			sprintf_P(str,PSTR("EGR_ERR: "));
 			break;
 		case 0x2E: 
-			sprintf_P(str,"EVAP: ");
+			sprintf_P(str,PSTR("EVAP: "));
 			break;
 		case 0x2F: 
-			sprintf_P(str,"Fuel Lvl: ");
+			sprintf_P(str,PSTR("Fuel Lvl: "));
 			break;
 		case 0x30: 
-			sprintf_P(str,"Warm ups: ");
+			sprintf_P(str,PSTR("Warm ups: "));
 			break;
 		case 0x31: 
-			sprintf_P(str,"Clear Dist: ");
+			sprintf_P(str,PSTR("Clear Dist: "));
 			break;
 		case 0x32: 
-			sprintf_P(str,"EVAP P: ");
+			sprintf_P(str,PSTR("EVAP P: "));
 			break;
 		case 0x33: 
-			sprintf_P(str,"BARO: ");
+			sprintf_P(str,PSTR("BARO: "));
 			break;
 		case 0x3C: 
-			sprintf_P(str,"CAT TEMP11: ");
+			sprintf_P(str,PSTR("CAT TEMP11: "));
 			break;
 		case 0x3D: 
-			sprintf_P(str,"CAT TEMP21: ");
+			sprintf_P(str,PSTR("CAT TEMP21: "));
 			break;
 		case 0x3E: 
-			sprintf_P(str,"CAT TEMP12: ");
+			sprintf_P(str,PSTR("CAT TEMP12: "));
 			break;
 		case 0x3F: 
-			sprintf_P(str,"CAT TEMP22: ");
+			sprintf_P(str,PSTR("CAT TEMP22: "));
 			break;
 		case 0x42:
-			sprintf_P(str,"VPWR: ");
+			sprintf_P(str,PSTR("VPWR: "));
 			break;
 		case 0x43:
-			sprintf_P(str,"LOAD ABS: ");
+			sprintf_P(str,PSTR("LOAD ABS: "));
 			break;
 		case 0x44:
-			sprintf_P(str,"EQ_RAT: ");
+			sprintf_P(str,PSTR("EQ_RAT: "));
 			break;
 		case 0x45:
-			sprintf_P(str,"TP_R: ");
+			sprintf_P(str,PSTR("TP_R: "));
 			break;
 		case 0x46:
-			sprintf_P(str,"AAT: ");
+			sprintf_P(str,PSTR("AAT: "));
 			break;
 		case 0x47:
-			sprintf_P(str,"TPS_B: ");
+			sprintf_P(str,PSTR("TPS_B: "));
 			break;
 		case 0x48:
-			sprintf_P(str,"TPS_C: ");
+			sprintf_P(str,PSTR("TPS_C: "));
 			break;
 		case 0x49:
-			sprintf_P(str,"APP_D: ");
+			sprintf_P(str,PSTR("APP_D: "));
 			break;
 		case 0x4A:
-			sprintf_P(str,"APP_E: ");
+			sprintf_P(str,PSTR("APP_E: "));
 			break;
 		case 0x4B:
-			sprintf_P(str,"APP_F: ");
+			sprintf_P(str,PSTR("APP_F: "));
 			break;
 		case 0x4C:
-			sprintf_P(str,"TAC_PCT: ");
+			sprintf_P(str,PSTR("TAC_PCT: "));
 			break;
 		case 0x4D:
-			sprintf_P(str,"MIL_TIME: ");
+			sprintf_P(str,PSTR("MIL_TIME: "));
 			break;
 		case 0x4E:
-			sprintf_P(str,"CLR_TIME: ");
+			sprintf_P(str,PSTR("CLR_TIME: "));
 			break;
 	}
 	return 0;
@@ -313,75 +313,75 @@ UBYTE process_PID(UBYTE *data, UBYTE *str, UBYTE nStr, UBYTE *str2, UBYTE nStr2)
 	{
 		case 0x03:
 			if (data[2]==0)
-				sprintf_P(str,"N/A");
+				sprintf_P(str,PSTR("N/A"));
 			if (data[2] & 0x01)
-				sprintf_P(str,"OL");
+				sprintf_P(str,PSTR("OL"));
 			if (data[2] & 0x02)
-				sprintf_P(str,"CL");
+				sprintf_P(str,PSTR("CL"));
 			if (data[2] & 0x04)
-				sprintf_P(str,"OL-Dr");
+				sprintf_P(str,PSTR("OL-Dr"));
 			if (data[2] & 0x08)
-				sprintf_P(str,"OL_Flt");
+				sprintf_P(str,PSTR("OL_Flt"));
 			if (data[2] & 0x10)
-				sprintf_P(str,"CL_Flt");
+				sprintf_P(str,PSTR("CL_Flt"));
 			if (data[3]==0)
-				sprintf_P(str2,"N/A");
+				sprintf_P(str2,PSTR("N/A"));
 			if (data[3] & 0x01)
-				sprintf_P(str2,"OL");
+				sprintf_P(str2,PSTR("OL"));
 			if (data[3] & 0x02)
-				sprintf_P(str2,"CL");
+				sprintf_P(str2,PSTR("CL"));
 			if (data[3] & 0x04)
-				sprintf_P(str2,"OL-Dr");
+				sprintf_P(str2,PSTR("OL-Dr"));
 			if (data[3] & 0x08)
-				sprintf_P(str2,"OL_Flt");
+				sprintf_P(str2,PSTR("OL_Flt"));
 			if (data[3] & 0x10)
-				sprintf_P(str2,"CL_Flt");
+				sprintf_P(str2,PSTR("CL_Flt"));
 
 			break;					
 		case 0x04:
-			sprintf_P(str,"%01.1f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01.1f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x05: 
-			sprintf_P(str,"%01.0f%cC",OBDII_TEMP(data[2]),0xDF);
+			sprintf_P(str,PSTR("%01.0f%cC"),OBDII_TEMP(data[2]),0xDF);
 			break;
 		case 0x06: 
 		case 0x07:
 		case 0x08:
 		case 0x09:
-			sprintf_P(str,"%01.0f%%",OBDII_O2PERCENT(data[2]));
-			sprintf_P(str2,"%01.0f%%",OBDII_O2PERCENT(data[3]));
+			sprintf_P(str,PSTR("%01.0f%%"),OBDII_O2PERCENT(data[2]));
+			sprintf_P(str2,PSTR("%01.0f%%"),OBDII_O2PERCENT(data[3]));
 			break;
 		case 0x0A: 
-			sprintf_P(str,"%01.0fkPa",(double)(data[2])*3.0);
+			sprintf_P(str,PSTR("%01.0fkPa"),(double)(data[2])*3.0);
 			break;
 		case 0x0B: 
-			sprintf_P(str,"%01.0fkPa",(double)(data[2]));
+			sprintf_P(str,PSTR("%01.0fkPa"),(double)(data[2]));
 			break;
 		case 0x0C: 
-			sprintf_P(str,"%01.0f",(double)MAKEWORD(data[2],data[3])/4.0);
+			sprintf_P(str,PSTR("%01.0f"),(double)MAKEWORD(data[2],data[3])/4.0);
 			break;
 		case 0x0D: 
-			sprintf_P(str,"%01.0fkm/h",(double)(data[2]));
+			sprintf_P(str,PSTR("%01.0fkm/h"),(double)(data[2]));
 			break;
 		case 0x0E: 
-			sprintf_P(str,"%01.0f",((double)(data[2])-128.0)/2.0);
+			sprintf_P(str,PSTR("%01.0f"),((double)(data[2])-128.0)/2.0);
 			break;
 		case 0x0F: 
-			sprintf_P(str,"%01.0f%cC",OBDII_TEMP(data[2]),0xDF);
+			sprintf_P(str,PSTR("%01.0f%cC"),OBDII_TEMP(data[2]),0xDF);
 			break;
 		case 0x10: 
-			sprintf_P(str,"%01.2fg/s",(double)MAKEWORD(data[2],data[3])*0.01);
+			sprintf_P(str,PSTR("%01.2fg/s"),(double)MAKEWORD(data[2],data[3])*0.01);
 			break;
 		case 0x11: 
-			sprintf_P(str,"%01.2f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01.2f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x12: 
 			if (data[2] & 0x01)
-				 sprintf_P(str,"UPS");
+				 sprintf_P(str,PSTR("UPS"));
 			if (data[2] & 0x02)
-				 sprintf_P(str,"DNS");
+				 sprintf_P(str,PSTR("DNS"));
 			if (data[2] & 0x04)
-				 sprintf_P(str,"OFF");
+				 sprintf_P(str,PSTR("OFF"));
 			break;
 		case 0x14: 
 		case 0x15: 
@@ -391,48 +391,48 @@ UBYTE process_PID(UBYTE *data, UBYTE *str, UBYTE nStr, UBYTE *str2, UBYTE nStr2)
 		case 0x19: 
 		case 0x1A:
 		case 0x1B:  
-			sprintf_P(str,"%01.3fV",OBDII_O2VOLTS(data[2]));
-			sprintf_P(str2,"%01.1f%%",OBDII_O2PERCENT(data[3]));
+			sprintf_P(str,PSTR("%01.3fV"),OBDII_O2VOLTS(data[2]));
+			sprintf_P(str2,PSTR("%01.1f%%"),OBDII_O2PERCENT(data[3]));
 			break;
 		case 0x1C:
 			if(data[2]==0x01)
-				sprintf_P(str,"OBDII");
+				sprintf_P(str,PSTR("OBDII"));
 			if(data[2]==0x02)
-				sprintf_P(str,"OBD");
+				sprintf_P(str,PSTR("OBD"));
 			if(data[2]==0x03)
-				sprintf_P(str,"OBD & II");
+				sprintf_P(str,PSTR("OBD & II"));
 			if(data[2]==0x04)
-				sprintf_P(str,"OBD I");
+				sprintf_P(str,PSTR("OBD I"));
 			if(data[2]==0x05)
-				sprintf_P(str,"No OBD");
+				sprintf_P(str,PSTR("No OBD"));
 			if(data[2]==0x06)
-				sprintf_P(str,"EOBD");
+				sprintf_P(str,PSTR("EOBD"));
 			if(data[2]==0x07)
-				sprintf_P(str,"EOBD&II");
+				sprintf_P(str,PSTR("EOBD&II"));
 			if(data[2]==0x08)
-				sprintf_P(str,"EOBD&OBD");
+				sprintf_P(str,PSTR("EOBD&OBD"));
 			if(data[2]==0x09)
-				sprintf_P(str,"E OBD II");
+				sprintf_P(str,PSTR("E OBD II"));
 			if(data[2]==0x0A)
-				sprintf_P(str,"JOBD");
+				sprintf_P(str,PSTR("JOBD"));
 			if(data[2]==0x0B)
-				sprintf_P(str,"JOBD II");
+				sprintf_P(str,PSTR("JOBD II"));
 			if(data[2]==0x0C)
-				sprintf_P(str,"JOBD EOBD");
+				sprintf_P(str,PSTR("JOBD EOBD"));
 			if(data[2]==0x0D)
-				sprintf_P(str,"J E II");
+				sprintf_P(str,PSTR("J E II"));
 			break;
 		case 0x1F: 
-			sprintf_P(str,"%0us", MAKEWORD(data[2],data[3]) );
+			sprintf_P(str,PSTR("%0us"), MAKEWORD(data[2],data[3]) );
 			break;
 		case 0x21: 
-			sprintf_P(str,"%0ukm", MAKEWORD(data[2],data[3]));
+			sprintf_P(str,PSTR("%0ukm"), MAKEWORD(data[2],data[3]));
 			break;
 		case 0x22: 
-			sprintf_P(str,"%01.2fkPA",(double)MAKEWORD(data[2],data[3])*0.079 );
+			sprintf_P(str,PSTR("%01.2fkPA"),(double)MAKEWORD(data[2],data[3])*0.079 );
 			break;
 		case 0x23: 
-			sprintf_P(str,"%01.0fkPA",(double)MAKEWORD(data[2],data[3])*10.0);
+			sprintf_P(str,PSTR("%01.0fkPA"),(double)MAKEWORD(data[2],data[3])*10.0);
 			break;
 		case 0x24:
 		case 0x25:
@@ -442,32 +442,32 @@ UBYTE process_PID(UBYTE *data, UBYTE *str, UBYTE nStr, UBYTE *str2, UBYTE nStr2)
 		case 0x29:
 		case 0x2A:
 		case 0x2B: 
-			sprintf_P(str,"%01.3f",(double)MAKEWORD(data[2],data[3])*0.0000305);
-			sprintf_P(str2,"%01.2fV",(double)MAKEWORD(data[2],data[3])*0.000122);
+			sprintf_P(str,PSTR("%01.3f"),(double)MAKEWORD(data[2],data[3])*0.0000305);
+			sprintf_P(str2,PSTR("%01.2fV"),(double)MAKEWORD(data[2],data[3])*0.000122);
 			break;
 		case 0x2C: 
-			sprintf_P(str,"%01.1f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01.1f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x2D: 
-			sprintf_P(str,"%01.1f%%",OBDII_O2PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01.1f%%"),OBDII_O2PERCENT(data[2]));
 			break;
 		case 0x2E: 
-			sprintf_P(str,"%01.1f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01.1f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x2F: 
-			sprintf_P(str,"%01.1f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01.1f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x30: 
-			sprintf_P(str,"%0d",data[2]);
+			sprintf_P(str,PSTR("%0d"),data[2]);
 			break;
 		case 0x31: 
-			sprintf_P(str,"%0dkm",MAKEWORD(data[2],data[3]));
+			sprintf_P(str,PSTR("%0dkm"),MAKEWORD(data[2],data[3]));
 			break;
 		case 0x32: 
-			sprintf_P(str,"%01.2fPa",((double)(MAKEWORD(data[2],data[3])))*0.25);
+			sprintf_P(str,PSTR("%01.2fPa"),((double)(MAKEWORD(data[2],data[3])))*0.25);
 			break;
 		case 0x33: 
-			sprintf_P(str,"%0dkPa",data[2]);
+			sprintf_P(str,PSTR("%0dkPa"),data[2]);
 			break;
 		case 0x34:
 		case 0x35:
@@ -477,53 +477,53 @@ UBYTE process_PID(UBYTE *data, UBYTE *str, UBYTE nStr, UBYTE *str2, UBYTE nStr2)
 		case 0x39:
 		case 0x3A:
 		case 0x3B: 
-			sprintf_P(str,"%01.3f",(double)MAKEWORD(data[2],data[3])*0.0000305);
-			sprintf_P(str2,"%01.3fmA",(double)MAKEWORD(data[2],data[3])*0.00390625);
+			sprintf_P(str,PSTR("%01.3f"),(double)MAKEWORD(data[2],data[3])*0.0000305);
+			sprintf_P(str2,PSTR("%01.3fmA"),(double)MAKEWORD(data[2],data[3])*0.00390625);
 			break;
 		case 0x3C:
 		case 0x3D:
 		case 0x3E:
 		case 0x3F: 
-			sprintf_P(str,"%01.1f%cC",(double)MAKEWORD(data[2],data[3])*0.1,0xDF);
+			sprintf_P(str,PSTR("%01.1f%cC"),(double)MAKEWORD(data[2],data[3])*0.1,0xDF);
 			break;
 		case 0x42:
-			sprintf_P(str,"%01.3fV",(((double)(MAKEWORD(data[2],data[3])))*0.001)-40.0);
+			sprintf_P(str,PSTR("%01.3fV"),(((double)(MAKEWORD(data[2],data[3])))*0.001)-40.0);
 			break;
 		case 0x43:
-			sprintf_P(str,"%01.1f%%abs",((double)(MAKEWORD(data[2],data[3])))*100.0/255.0);
+			sprintf_P(str,PSTR("%01.1f%%abs"),((double)(MAKEWORD(data[2],data[3])))*100.0/255.0);
 			break;
 		case 0x44:
-			sprintf_P(str,"%01.3fs",((double)(MAKEWORD(data[2],data[3])))*0.0000305);
+			sprintf_P(str,PSTR("%01.3fs"),((double)(MAKEWORD(data[2],data[3])))*0.0000305);
 			break;
 		case 0x45:
-			sprintf_P(str,"%01.1f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01.1f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x46:
-			sprintf_P(str,"%01f%cC",OBDII_TEMP(data[2]),0xDF);
+			sprintf_P(str,PSTR("%01f%cC"),OBDII_TEMP(data[2]),0xDF);
 			break;
 		case 0x47:
-			sprintf_P(str,"%01f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x48:
-			sprintf_P(str,"%01f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x49:
-			sprintf_P(str,"%01f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x4A:
-			sprintf_P(str,"%01f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x4B:
-			sprintf_P(str,"%01f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x4C:
-			sprintf_P(str,"%01f%%",OBDII_PERCENT(data[2]));
+			sprintf_P(str,PSTR("%01f%%"),OBDII_PERCENT(data[2]));
 			break;
 		case 0x4D:
-			sprintf_P(str,"%0ds",MAKEWORD(data[2],data[3]));
+			sprintf_P(str,PSTR("%0ds"),MAKEWORD(data[2],data[3]));
 			break;
 		case 0x4E:
-			sprintf_P(str,"%0ds",MAKEWORD(data[2],data[3]));
+			sprintf_P(str,PSTR("%0ds"),MAKEWORD(data[2],data[3]));
 			break;
 	}
 	return ret;
@@ -569,13 +569,13 @@ UBYTE PidInit()
 
 			if(ret==0)
 			{
-				printf("No response from ECM for PID number\n\r");
+				printf_P(PSTR("No response from ECM for PID number\n\r"));
 				return 0;
 			}
 			if (ret>1)
 			{
 				//or the data bytes together
-				printf_P("Num ECMs %d\n\r",ret);
+				printf_P(PSTR("Num ECMs %d\n\r"),ret);
 				for(j=0; j<ret; j++)
 				{
 					for(i=2; i<6; i++)
@@ -585,12 +585,12 @@ UBYTE PidInit()
 				}
 			}
 /*
-			printf_P("pids %u: ",data[0].n);
+			printf_P(PSTR("pids %u: ",data[0].n);
 			for(i=0; i<data[0].n;i++)
 			{
-				printf_P("%X ",data[0].data[i]);
+				printf_P(PSTR("%X ",data[0].data[i]);
 			}
-			printf_P("\n\r");
+			printf_P(PSTR("\n\r"));
 */
 			//else lets process PIDs.... 
 			i=1+offset;
@@ -645,12 +645,12 @@ UBYTE PidInit()
 	}
    	ncount++;
 /*
-	printf_P("Supported pids: ");
+	printf_P(PSTR("Supported pids: "));
 	for (i=0; i<8; i++)
 	{
-		printf_P("%X ",pidSupported[i]);
+		printf_P(PSTR("%X ",pidSupported[i]);
 	}
-	printf_P("\n\r");	  
+	printf_P(PSTR("\n\r"));	  
 */
 	return numPids;
 }
@@ -710,13 +710,13 @@ UBYTE obdII_pid_get(UBYTE *str, UBYTE line)
 
 		if(ret==0)
 		{
-			printf_P("No response from ECM for PID support\n\r");
+			printf_P(PSTR("No response from ECM for PID support\n\r"));
 			return 0;
 		}
 		if (ret>1)
 		{
 			//or the data bytes together
-			printf_P("Num ECMs %d\n\r",ret);
+			printf_P(PSTR("Num ECMs %d\n\r",ret);
 			for(j=0; j<ret; j++)
 			{
 				for(i=2; i<6; i++)
@@ -726,12 +726,12 @@ UBYTE obdII_pid_get(UBYTE *str, UBYTE line)
 			}
 		}
 
-		printf_P("pids ");
+		printf_P(PSTR("pids "));
 		for(i=0; i<data[0].n;i++)
 		{
-			printf_P("%X ",data[0].data[i]);
+			printf_P(PSTR("%X ",data[0].data[i]);
 		}
-		printf_P("\n\r");
+		printf_P(PSTR("\n\r"));
 
 		//else lets process PIDs.... 
 		i=1+offset;
@@ -785,13 +785,13 @@ UBYTE obdII_pid_test()
 
 		if(ret==0)
 		{
-			printf_P("No response from ECM for PID support\n\r");
+			printf_P(PSTR("No response from ECM for PID support\n\r"));
 			return 0;
 		}
 		if (ret>1)
 		{
 			//or the data bytes together
-			printf_P("Num ECMs %d\n\r",ret);
+			printf_P(PSTR("Num ECMs %d\n\r",ret);
 			for(j=0; j<ret; j++)
 			{
 				for(i=2; i<6; i++)
@@ -801,12 +801,12 @@ UBYTE obdII_pid_test()
 			}
 		}
 
-		printf_P("pids ");
+		printf_P(PSTR("pids "));
 		for(i=0; i<data[0].n;i++)
 		{
-			printf_P("%X ",data[0].data[i]);
+			printf_P(PSTR("%X ",data[0].data[i]);
 		}
-		printf_P("\n\r");
+		printf_P(PSTR("\n\r"));
 
 		//else lets process PIDs.... 
 		i=1+offset;
@@ -967,7 +967,7 @@ UBYTE obdII_get_num_codes(UBYTE reset)
 
 		if (ret==0 || ret>MAX_RESP)
 		{
-			printf_P("No response for number of codes %d\n\r",ret);
+			printf_P(PSTR("No response for number of codes %d\n\r"),ret);
 			return 0;
 		}
 
@@ -1017,7 +1017,7 @@ UWORD obdII_get_code(UBYTE index, UBYTE nCodes)
 
 	if (ret==0 || ret>MAX_RESP)
 	{
-		printf_P("No response for codes %d\n\r",ret);
+		printf_P(PSTR("No response for codes %d\n\r"),ret);
 		return 0;
 	}
 	//process codes
@@ -1039,7 +1039,7 @@ UWORD obdII_get_code(UBYTE index, UBYTE nCodes)
 				code=code+ (UWORD)((data[i].data[1+(j*2)] & 0x0F))*(UWORD)100;
 				code=code+ (UWORD)((data[i].data[2+(j*2)] & 0xF0)>>4)*(UWORD)10;
 				code=code+ (UWORD)((data[i].data[2+(j*2)] & 0x0F));
-				//printf_P("code is %lu\n\r",code);
+				//printf_P(PSTR("code is %lu\n\r",code);
 				j++;
 				if (code>0)
 				{	
@@ -1070,13 +1070,13 @@ UBYTE obdII_codes()
 
 	//first find number of codes
 	nCodes=obdII_get_num_codes(0);
-  	printf_P("Found %d codes\n\r",nCodes);
+  	printf_P(PSTR("Found %d codes\n\r"),nCodes);
 
 	for (i=0; i<nCodes; i++)
 	{
-		printf_P("Code %u\n\r",obdII_get_code(i,nCodes));
+		printf_P(PSTR("Code %u\n\r"),obdII_get_code(i,nCodes));
 	}
-   	printf_P("Codes Done!\n\r");
+   	printf_P(PSTR("Codes Done!\n\r"));
 	return nCodes;
 } 
 
@@ -1091,7 +1091,7 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 	
 	if (line>NUM_STATUS_LINES)
 	{
-		sprintf_P(str, "STATUS ERROR");
+		sprintf_P(str, PSTR("STATUS ERROR"));
 		return 0;
 	}
 	//read the status bits
@@ -1104,7 +1104,7 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 
 		if (ret==0 || ret>MAX_RESP)
 		{
-			printf_P("No response for status %d\n\r",ret);
+			printf_P(PSTR("No response for status %d\n\r"),ret);
 			count=0;
 			return 0;
 		}
@@ -1124,10 +1124,10 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 		case 1:
 		  if (piddata[2] & 0x80)
 		  {
-		  	sprintf_P(str, "MIL: ON");
+		  	sprintf_P(str, PSTR("MIL: ON"));
 		  }else
 		  {
-		  	sprintf_P(str, "MIL: OFF");
+		  	sprintf_P(str, PSTR("MIL: OFF"));
 		  }
 		  return 0;
 		case 2:
@@ -1135,14 +1135,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[3] & 0x10)
 				{
-					sprintf_P(str, "Missfire: NotRdy");
+					sprintf_P(str, PSTR("Missfire: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "Missfire: Ready");
+					sprintf_P(str, PSTR("Missfire: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "Missfire: N/A");
+				sprintf_P(str, PSTR("Missfire: N/A"));
 			}
 			return 0;
 		 case 3:
@@ -1150,14 +1150,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[3] & 0x20)
 				{
-					sprintf_P(str, "Fuel Sys: NotRdy");
+					sprintf_P(str, PSTR("Fuel Sys: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "Fuel Sys: Ready");
+					sprintf_P(str, PSTR("Fuel Sys: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "Fuel Sys: N/A");
+				sprintf_P(str, PSTR("Fuel Sys: N/A"));
 			}
 			return 0;
 		 case 4:
@@ -1165,14 +1165,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[3] & 0x40)
 				{
-					sprintf_P(str, "Comp. Mon: NotRdy");
+					sprintf_P(str, PSTR("Comp. Mon: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "Comp. Mon: Ready");
+					sprintf_P(str, PSTR("Comp. Mon: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "Comp. Mon: N/A");
+				sprintf_P(str, PSTR("Comp. Mon: N/A"));
 			}
 			return 0;
 		case 5:
@@ -1180,14 +1180,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[5] & 0x01)
 				{
-					sprintf_P(str, "Catalyst: NotRdy");
+					sprintf_P(str, PSTR("Catalyst: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "Catalyst: Ready");
+					sprintf_P(str, PSTR("Catalyst: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "Catalyst: N/A");
+				sprintf_P(str, PSTR("Catalyst: N/A"));
 			}
 			return 0;
 		case 6:
@@ -1195,14 +1195,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[5] & 0x02)
 				{
-					sprintf_P(str, "Heated Cat: NotRdy");
+					sprintf_P(str, PSTR("Heated Cat: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "Heated Cat: Ready");
+					sprintf_P(str, PSTR("Heated Cat: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "Heated Cat: N/A");
+				sprintf_P(str, PSTR("Heated Cat: N/A"));
 			}
 			return 0;
 		case 7:
@@ -1210,14 +1210,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[5] & 0x04)
 				{
-					sprintf_P(str, "EVAP: NotRdy");
+					sprintf_P(str,PSTR("EVAP: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "EVAP: Ready");
+					sprintf_P(str,PSTR("EVAP: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "EVAP: N/A");
+				sprintf_P(str,PSTR("EVAP: N/A"));
 			}
 			return 0;
 		case 8:
@@ -1225,14 +1225,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[5] & 0x08)
 				{
-					sprintf_P(str, "Sec. Air: NotRdy");
+					sprintf_P(str,PSTR("Sec. Air: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "Sec. Air: Ready");
+					sprintf_P(str,PSTR("Sec. Air: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "Sec. Air: N/A");
+				sprintf_P(str,PSTR("Sec. Air: N/A"));
 			}
 			return 0;
 		case 9:
@@ -1240,14 +1240,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[5] & 0x10)
 				{
-					sprintf_P(str, "A/C Sys: NotRdy");
+					sprintf_P(str,PSTR("A/C Sys: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "A/C Sys: Ready");
+					sprintf_P(str,PSTR("A/C Sys: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "A/C Sys: N/A");
+				sprintf_P(str,PSTR("A/C Sys: N/A"));
 			}
 			return 0;
 		case 10:
@@ -1255,14 +1255,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[5] & 0x20)
 				{
-					sprintf_P(str, "O2 Sensor: NotRdy");
+					sprintf_P(str,PSTR("O2 Sensor: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "O2 Sensor: Ready");
+					sprintf_P(str,PSTR("O2 Sensor: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "O2 Sensor: N/A");
+				sprintf_P(str,PSTR("O2 Sensor: N/A"));
 			}
 			return 0;
 		case 11:
@@ -1270,14 +1270,14 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[5] & 0x40)
 				{
-					sprintf_P(str, "O2 Heater: NotRdy");
+					sprintf_P(str,PSTR("O2 Heater: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "O2 Heater: Ready");
+					sprintf_P(str,PSTR("O2 Heater: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "O2 Heater: N/A");
+				sprintf_P(str,PSTR("O2 Heater: N/A"));
 			}
 			return 0;
 		case 12:
@@ -1285,18 +1285,18 @@ UBYTE obdII_get_status(UBYTE *str, UBYTE line)
 			{
 				if (piddata[5] & 0x80)
 				{
-					sprintf_P(str, "EGR Sys: NotRdy");
+					sprintf_P(str,PSTR("EGR Sys: NotRdy"));
 				}else
 				{
-					sprintf_P(str, "EGR Sys: Ready");
+					sprintf_P(str,PSTR("EGR Sys: Ready"));
 				}
 			}else
 			{
-				sprintf_P(str, "EGR Sys: N/A");
+				sprintf_P(str,PSTR("EGR Sys: N/A"));
 			}
 			return 0;
 	}
-	sprintf_P(str, "Status N/A");
+	sprintf_P(str,PSTR("Status N/A"));
 
 	return 0;
 }
@@ -1332,9 +1332,9 @@ UBYTE obdII_run(BYTE index, UBYTE reset)
 	if (obdError)
 	{
 		//LCD_clear();
-		sprintf_P(str,"No Communications");	
+		sprintf_P(str,PSTR("No Communications"));	
 		LCD_print1(str,0);
-		sprintf_P(str,"Turn Key On");
+		sprintf_P(str,PSTR("Turn Key On"));
 		LCD_print2(str,0);
 		lastcode=0;
 		obdII_leds_off();
@@ -1350,7 +1350,7 @@ UBYTE obdII_run(BYTE index, UBYTE reset)
 		line=0;
 	}
 	
-	sprintf_P(str,"Line=%d",line);
+	sprintf_P(str,PSTR("Line=%d"),line);
 	if (line>(INT)(nCodes+NUM_STATUS_LINES+nPids))
 	{
 		line=nCodes+NUM_STATUS_LINES+nPids;
@@ -1360,9 +1360,9 @@ UBYTE obdII_run(BYTE index, UBYTE reset)
 	if (line<=0)
 	{
 		line=0;
-		sprintf_P(str,"NumCodes %u",nCodes);
+		sprintf_P(str,PSTR("NumCodes %u"),nCodes);
 		LCD_print1(str,0);
-		sprintf_P(str,"Scroll to view");
+		sprintf_P(str,PSTR("Scroll to view"));
 		LCD_print2(str,0);
 		return 0;
 	}
@@ -1377,14 +1377,14 @@ UBYTE obdII_run(BYTE index, UBYTE reset)
 		code=obdII_get_code(temp,nCodes);
 		//since the code is scrolling we can not update every loop
 		//so let's update when code changes...
-		//printf_P("code %lu %u\n\r",code,temp);
+		//printf_P(PSTR("code %lu %u\n\r",code,temp);
 		if (lastcode!=code && code!=0)
 		{
-			//printf_P("printing code %lu %u\n\r",code,temp);
+			//printf_P(PSTR("printing code %lu %u\n\r",code,temp);
 			PcodePrint(code);
 			lastcode=code;
 		}
-		//printf_P("printing code done\n\r");
+		//printf_P(PSTR("printing code done\n\r"));
 		//PcodePrint(temp+100);
 		return 0;
 	}else
@@ -1396,7 +1396,7 @@ UBYTE obdII_run(BYTE index, UBYTE reset)
 	temp=line-nCodes;
 	if (temp<NUM_STATUS_LINES)
 	{
-		//printf_P("status temp=%u\n\r",temp);
+		//printf_P(PSTR("status temp=%u\n\r",temp);
 		obdII_get_status(str,temp);
 		LCD_print1(str,0);
 		obdII_get_status(str,temp+1);
@@ -1406,7 +1406,7 @@ UBYTE obdII_run(BYTE index, UBYTE reset)
 
 	//now lets read the data stream... 
 	temp=temp-NUM_STATUS_LINES+1;
-	//printf_P("PID line is %d\n\r",temp);
+	//printf_P(PSTR("PID line is %d\n\r",temp);
 	pid=0x02;
 	for(i=0; i<temp; i++)
 	{
@@ -1414,22 +1414,22 @@ UBYTE obdII_run(BYTE index, UBYTE reset)
 		if (temp2>0)
 			pid=temp2;
 	}
-	//printf_P("PID is %u\n\r",pid);
+	//printf_P(PSTR("PID is %u\n\r",pid);
 
 	//get the labels for the PIDs
 	pidLabels(pid,str,20,str2,20);
 	temp2=0;
 	if (str2[0]==0)
 	{
-		//printf_P("reading next pid\n\r");
+		//printf_P(PSTR("reading next pid\n\r"));
 		temp2=getNextPid(pid);
-		//printf_P("next pid is %u\n\r",temp2);
+		//printf_P(PSTR("next pid is %u\n\r",temp2);
 		if (temp2!=0)
 		{
 			pidLabels(temp2,str2,20,str5,20);
 		}
 	}
-	////printf_P("Temp2 is %u\n\r",temp2);
+	////printf_P(PSTR("Temp2 is %u\n\r",temp2);
 	if (pid!=lastPid)
 	{
 		LCD_print1(str,0);
@@ -1437,17 +1437,17 @@ UBYTE obdII_run(BYTE index, UBYTE reset)
 		lastPid=pid;
 	}
 	obdII_read_PID(pid,str3,20,str4,20);
-	//printf_P("str4 is %s\n\r",str4);
+	//printf_P(PSTR("str4 is %s\n\r",str4);
 	if(temp2!=0)
 	{
-		//printf_P("reading second pid value %u\n\r",temp2);
+		//printf_P(PSTR("reading second pid value %u\n\r",temp2);
 		obdII_read_PID(temp2,str4,20,str5,20);
 	}
 	str5[0]=0;
-	sprintf_P(str5,"%s%s",str,str3);
+	sprintf_P(str5,PSTR("%s%s"),str,str3);
 	str[0]=0;
-	sprintf_P(str,"%s%s",str2,str4);
-	//printf_P("str is %s\n\r",str);
+	sprintf_P(str,PSTR("%s%s"),str2,str4);
+	//printf_P(PSTR("str is %s\n\r",str);
 	LCD_print1(str5,0);
 	LCD_print2(str,0);
 /*				
@@ -1544,7 +1544,7 @@ UBYTE process(OBDII *resp, UBYTE num_resp, UBYTE *data, UBYTE num_data, UBYTE co
 	//check vaild input
 	if (num_data<5 || num_resp<1 || connection==UNKNOWN)
 	{
-		printf_P("process error %d\n\r",num_data);
+		printf_P(PSTR("process error %d\n\r"),num_data);
 		return 0;
 	}
 
@@ -1573,19 +1573,19 @@ UBYTE process(OBDII *resp, UBYTE num_resp, UBYTE *data, UBYTE num_data, UBYTE co
 			//we can process the data for
 			//first we need to know the length. 
 			//to find length check CRC. 
-			//printf_P("FOUND data i=%d\n\r",i);
+			//printf_P(PSTR("FOUND data i=%d\n\r",i);
 			for (j=5; j<=(num_data); j++)
 			{
-				//printf_P("j=%d num_data=%d\n\r",j,num_data);
-				//printf_P("data[j]=%X data[j+1]=%X\n\r",data[j],data[j+1]);
+				//printf_P(PSTR("j=%d num_data=%d\n\r",j,num_data);
+				//printf_P(PSTR("data[j]=%X data[j+1]=%X\n\r",data[j],data[j+1]);
 				if( (data[j]==byte1 && data[j+1]==byte2) || j==num_data )
 				{
-					//printf_P("checking %d %d\n\r",i,j);
+					//printf_P(PSTR("checking %d %d\n\r",i,j);
 					if (check_errors(&data[i],j-i,connection)==0)
 					{
 						UBYTE l;
 						//we have vaild data
-						//printf_P("Valid data %d %d\n\r",i,j);
+						//printf_P(PSTR("Valid data %d %d\n\r",i,j);
 						resp[n].addr=data[i+2];
 						resp[n].n=j-4;
 						for(l=3; l<j; l++)
@@ -1614,12 +1614,12 @@ UBYTE process(OBDII *resp, UBYTE num_resp, UBYTE *data, UBYTE num_data, UBYTE co
 /*
 	if (n==0)
 	{
-		printf_P("Malformed data: ");
+		printf_P(PSTR("Malformed data: "));
 		for(i=0; i<num_data; i++)
 		{
-			printf_P("%X ",data[i]);
+			printf_P(PSTR("%X ",data[i]);
 		}
-		printf_P("\n\r\n\r");
+		printf_P(PSTR("\n\r\n\r"));
 	}
 */
 	return n;
@@ -1664,12 +1664,12 @@ UBYTE obdII_send2(UBYTE *msg, UBYTE len_msg, OBDII *resp, UBYTE num_resp)
 /*
 			for(j=0; j<temp; j++)
 			{
-				printf_P("ECM %X returned ",resp[j].addr);
+				printf_P(PSTR("ECM %X returned ",resp[j].addr);
 				for(i=0; i<resp[j].n;i++)
 				{
-					printf_P("%X ",resp[j].data[i]);
+					printf_P(PSTR("%X ",resp[j].data[i]);
 				}
-				printf_P("\n\r");
+				printf_P(PSTR("\n\r"));
 			}
 */
 			return temp;
@@ -1682,7 +1682,7 @@ UBYTE obdII_send2(UBYTE *msg, UBYTE len_msg, OBDII *resp, UBYTE num_resp)
 	}
 	
 	//else lets try all possible connections
-	printf_P("Checking ISO\n\r");	
+	printf_P(PSTR("Checking ISO\n\r"));	
    	ret=iso_send(resp_str,SIZE_RESP_STR,msg,len_msg,0x33);
 	if (ret)
 	{
@@ -1691,9 +1691,9 @@ UBYTE obdII_send2(UBYTE *msg, UBYTE len_msg, OBDII *resp, UBYTE num_resp)
 	/*
    	if (ret==0)
 	{
-		printf_P("Checking PWM\n\r");	
+		printf_P(PSTR("Checking PWM\n\r"));	
 		//LCD_clear();
-		//sprintf_P(str, "Checking PWM");
+		//sprintf_P(str, "Checking PWM"));
 		//LCD_print1(str,0);
 
 		connect=PWM;
@@ -1702,9 +1702,9 @@ UBYTE obdII_send2(UBYTE *msg, UBYTE len_msg, OBDII *resp, UBYTE num_resp)
 	}
 	if (ret==0)
 	{
-		printf_P("Checking VPW\n\r");
+		printf_P(PSTR("Checking VPW\n\r"));
 		//LCD_clear();
-		//sprintf_P(str, "Checking VPW");
+		//sprintf_P(str, "Checking VPW"));
 		//LCD_print1(str,0);
 
 		connect=VPW;
@@ -1717,12 +1717,12 @@ UBYTE obdII_send2(UBYTE *msg, UBYTE len_msg, OBDII *resp, UBYTE num_resp)
 /*
 		for(j=0; j<temp; j++)
 		{
-			printf_P("ECM %X returned ",resp[j].addr);
+			printf_P(PSTR("ECM %X returned ",resp[j].addr);
 			for(i=0; i<resp[j].n;i++)
 			{
-				printf_P("%X ",resp[j].data[i]);
+				printf_P(PSTR("%X ",resp[j].data[i]);
 			}
-			printf_P("\n\r");
+			printf_P(PSTR("\n\r"));
 		}
 */
 		return temp;

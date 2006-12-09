@@ -18,6 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "LCD.h"
 #include "delay.h"
+#include <string.h>
 
 UBYTE str1[80]={0};
 UBYTE line1=0;
@@ -154,7 +155,7 @@ void LCD_print1(UBYTE *data, UBYTE pos)
 	if (pos>LCD_WIDTH)
 		return;
 
-	sprintf_P(str1,"%s",data);
+	strcpy(str1,data);
 	line1=strlen(str1);;
 	addr=0x80+pos;
 	i=0;
@@ -187,7 +188,7 @@ void LCD_print2(UBYTE *data, UBYTE pos)
 	addr=0xC0+pos;
 	LCD_Send_command(addr);
 	i=0;
-	sprintf_P(str2,"%s",data);
+	strcpy(str2,data);
 	line2=strlen(str2);;
 	while (data[i] !=0 && i<(LCD_WIDTH-pos))// && addr<=(0xC0+LCD_WIDTH))
 	{
@@ -210,7 +211,7 @@ void LCD_update()
 	UBYTE len,i;
 	static UBYTE temp=0;
 
-	//printf_P("LCD timer %lu\n\r",lcd_timer);
+	//printf_P(PSTR("LCD timer %lu\n\r",lcd_timer);
 //	if(lcd_timer<2)
 //		return;
 	

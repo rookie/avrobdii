@@ -287,12 +287,12 @@ UBYTE iso_send(UBYTE *resp, UBYTE len, UBYTE *msg, UBYTE msg_len, UBYTE address)
 	UBYTE ret,i;
 	UBYTE message[20];
 
-	//printf_P("Connect timer %lu\n\r",connect_timer(0));
+	//printf_P(PSTR("Connect timer %lu\n\r",connect_timer(0));
 	if (connect_timer(0)>300)
 		iso_state=ISO_UNKNOWN;
 	if (msg_len>6)
 	{
-		printf_P("Error: ISO message allows only 7 bytes\n\r");
+		printf_P(PSTR("Error: ISO message allows only 7 bytes\n\r"));
 		return 0;
 	}
 	//if we are not connected then lets connect to the ECM
@@ -310,7 +310,7 @@ UBYTE iso_send(UBYTE *resp, UBYTE len, UBYTE *msg, UBYTE msg_len, UBYTE address)
 			//connect_timer(1); //reset timer
 		}else
 		{
-			printf_P("Error: ISO slow connect failed\n\r");
+			printf_P(PSTR("Error: ISO slow connect failed\n\r"));
 			return 0;
 		}
 	}
@@ -332,7 +332,7 @@ UBYTE iso_send(UBYTE *resp, UBYTE len, UBYTE *msg, UBYTE msg_len, UBYTE address)
 	ret=iso_put(message,i,ISO_P3_MIN);
 	if(ret!=i)
 	{
-		printf_P("Error: ISO message sending problems\n\r");
+		printf_P(PSTR("Error: ISO message sending problems\n\r"));
 		iso_state= ISO_UNKNOWN;
 		return 0;
 	}
@@ -380,7 +380,7 @@ UBYTE iso_getAuto(UBYTE *data, UBYTE len, UWORD time_out_ms,UBYTE autoBaud )
 		{
 			if ((UINT16)GetElaspMs(&t)>ISO_P2_MAX )
 			{
-				printf_P("Error: ISO get bus error\n\r");
+				printf_P(PSTR("Error: ISO get bus error\n\r"));
 				return index;
 			}
 		}
@@ -397,7 +397,7 @@ UBYTE iso_getAuto(UBYTE *data, UBYTE len, UWORD time_out_ms,UBYTE autoBaud )
 			{
 				if (index==0)
 				{
-					printf_P("Error: ISO get time out\n\r");
+					printf_P(PSTR("Error: ISO get time out\n\r");
 				}
 				return index;
 			}
@@ -436,7 +436,7 @@ UBYTE iso_getAuto(UBYTE *data, UBYTE len, UWORD time_out_ms,UBYTE autoBaud )
 			{
 				if (index==0)
 				{
-					printf_P("Error: ISO get time out\n\r");
+					printf_P(PSTR("Error: ISO get time out\n\r"));
 				}
 				BIT_CLEAR(UCSR1B,RXEN1);
 				return index;
@@ -476,8 +476,8 @@ UBYTE iso_monitor()
 	UBYTE count,i;
 	UBYTE data[20];
 	
-	printf_P("Monitor started\n\r"); 
-	printf_P("Hit any key to stop\n\r");
+	printf_P(PSTR("Monitor started\n\r")); 
+	printf_P(PSTR("Hit any key to stop\n\r"));
 
 	//lets wait for some activity on the 
 	count=0;
@@ -498,7 +498,7 @@ UBYTE iso_monitor()
 	}
 	if (ms_timer>=3000)
 	{
-		printf_P("high for over 3sec\n\r");
+		printf_P(PSTR("high for over 3sec\n\r"));
 		return 0;
 	}
 	disable_interrupts(GLOBAL);
@@ -523,7 +523,7 @@ UBYTE iso_monitor()
 
 	if (ms_timer>=3000)
 	{
-		printf_P("low for over 3sec\n\r");
+		printf_P(PSTR("low for over 3sec\n\r"));
 		enable_interrupts(GLOBAL);
 		return 0;
 	}
@@ -534,14 +534,14 @@ UBYTE iso_monitor()
 	{
 		UBYTE i;
 		//we have fast init
-		//printf_P("Fast\n\r");
+		//printf_P(PSTR("Fast\n\r");
 
 		//now lets wait process data
 		//data=iso_getc();
 		disable_interrupts(GLOBAL);
 		count=iso_get(data,20,3000);
 		enable_interrupts(GLOBAL);
-	  	printf_P("\n\r\n\rFast Init %u ",count);
+	  	printf_P(PSTR("\n\r\n\rFast Init %u "),count);
 		for(i=0; i<count; i++)
 		{
 			fprintf(STDIN,"%X ", data[i]);
@@ -550,17 +550,17 @@ UBYTE iso_monitor()
 	if (ms_timer>=175 && ms_timer<225)
 	{
 		//we have slow init
-		//printf_P("Slow\n\r");
+		//printf_P(PSTR("Slow\n\r");
 		delay_ms(1600);	 //wait for rest of slow bits
 		disable_interrupts(GLOBAL);
 		count=iso_get(data,20,3000);
 		enable_interrupts(GLOBAL);
 		if (count==0)
 		{
-			printf_P("No response from ECM Slow\n\r");
+			printf_P(PSTR("No response from ECM Slow\n\r"));
 			//return 0;
 		}
-		printf_P("\n\r\n\rSlow Init %u ",count);
+		printf_P(PSTR("\n\r\n\rSlow Init %u "),count);
 		for(i=0; i<count; i++)
 		{
 			fprintf(STDIN,"%X ", data[i]);
@@ -569,7 +569,7 @@ UBYTE iso_monitor()
 	}else 
 	if (ms_timer<23 || ms_timer>225)
 	{
-		printf_P("Unknown ms=%lu,TMR0=%u\n\r",ms_timer,count);
+		printf_P(PSTR("Unknown ms=%lu,TMR0=%u\n\r"),ms_timer,count);
 		enable_interrupts(GLOBAL);
 		return 0;
 	}
@@ -580,7 +580,7 @@ UBYTE iso_monitor()
 	  	disable_interrupts(GLOBAL);
 	  	count=iso_get(data,20,3000);
 		enable_interrupts(GLOBAL);
-	  	printf_P("\n\rFast %u ",count);
+	  	printf_P(PSTR("\n\rFast %u ",count);
 		for(i=0; i<count; i++)
 		{
 			fprintf(STDIN,"%X ", data[i]);
@@ -674,15 +674,15 @@ UWORD iso_5baud(UBYTE *keys, UBYTE len, UBYTE address)
 		if (K_IN==0)
 			return 0;
 	}
-	printf_P("5 baud addr=%x\n\r",address);
+	printf_P(PSTR("5 baud addr=%x\n\r"),address);
 	iso_5baud_putc(address);
 
 	data=0;
 	temp=iso_getAuto(&data,1,ISO_W1_MAX*2,1); //auto baud
-	//printf_P("got %d %x\n\r",temp,data);
+	//printf_P(PSTR("got %d %x\n\r",temp,data);
 	if (data!=0x55)
 	{
-		printf_P("Bad 5baud init %u %X\n\r",(int)temp,(int)data);  
+		printf_P(PSTR("Bad 5baud init %u %X\n\r"),(int)temp,(int)data);  
 		return 0;
 	}
 	//baud=ISO_10400_BAUD;
@@ -700,13 +700,13 @@ UWORD iso_5baud(UBYTE *keys, UBYTE len, UBYTE address)
 			i=iso_get(&temp,1,ISO_W4_MAX*2);
 			if (i==0 ||  temp!=0xCC)
 			{
-				printf_P("Error: ISO 5 baud failed 0x%X 0x%X %d\n\r",keys[1],temp,i);
+				printf_P(PSTR("Error: ISO 5 baud failed 0x%X 0x%X %d\n\r"),keys[1],temp,i);
 				return 0; 
 			}
 		}
 	} else
 	{
-		printf_P("Bad keys\n\r");
+		printf_P(PSTR("Bad keys\n\r"));
 	}	 
 	iso_state=ISO_CONNECT;
 	return data;
@@ -727,7 +727,7 @@ UBYTE iso_put(UBYTE *data, UBYTE len, UWORD idle_wait)
 	TCCR3A=0x00;  //disable all compare
 	TCCR3B=0x02; //clkio/8
 
-	//printf_P("put baud =%d\n",baud);
+	//printf_P(PSTR("put baud =%d\n",baud);
 
 	//make sure buss is high
 	//TCNT3=0;
@@ -740,14 +740,14 @@ UBYTE iso_put(UBYTE *data, UBYTE len, UWORD idle_wait)
 		if (!K_IN)
 		{
 			//GetTime(&t);
-			printf_P("Error: Put failed\n\r");
+			printf_P(PSTR("Error: Put failed\n\r"));
 			return 0;
 		}
    	}
 	BIT_CLEAR(UCSR1B,TXEN1);
 	//BIT_SET(UCSR1B,TXEN1);
 
-	//printf_P("ms timer %lu\n\r",timer_ms);
+	//printf_P(PSTR("ms timer %lu\n\r",timer_ms);
 
 	//for each bit.... 
     index=0;
@@ -798,7 +798,7 @@ UBYTE iso_put(UBYTE *data, UBYTE len, UWORD idle_wait)
 		{
 			if (!K_IN)
 			{
-				printf_P("ERROR: ISO put failed\n\r");
+				printf_P(PSTR("ERROR: ISO put failed\n\r"));
 				//while(BIT_TEST(UCSR1A,TXC1)==0);
 				//BIT_CLEAR(UCSR1B,TXEN1);
 				return 0;
