@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "iso.h"
 #include "codes.h"
 #include "obdii.h"
+#include "command.h"
 
 
 
@@ -47,31 +48,35 @@ int main(void)
 
 	iso_init(10400);
 	uart_init(115200); //Set up UART
+
+//set up printf
+	fdevopen(uart_putchar, NULL);
+		
 	TimeInit();	 //set up time 
 	LCD_init(); //initilize the LCD (DO BEFORE LEDS)
 
 	LedsInit(); //set up LEDs
-	LedsFlash(); //flash LEDs
+	//LedsFlash(); //flash LEDs
 
 	LED_POWER(1); //turn power LED on
 	  
-	//set up printf
-	fdevopen(uart_putchar, NULL);
-
+	
 	//J1850Init();
 	KnobInit(); //set up the knob processing
 
-	
 
 	flash_init();
-	sprintf_P(str,"Stern Tech");
+	sprintf_P(str,PSTR("Stern Tech"));
 	LCD_print1(str,3);
+	sprintf_P(str,PSTR("1.0"));
+	LCD_print2(str,5);
 	LCD_update();
+	delay_ms(500);
+
 
 	//turn on interrupts and let games begin
 	ENABLE_INTERRUPTS();
-
-	//printf_P("hello world %f\n",87.5);		
+		
 
 	/*	\
 	msg[0]='A';
@@ -83,15 +88,16 @@ int main(void)
 	}
 
 */
-	printf_P("OBDII running\n\r");
+	printf_P(PSTR("OBDII running\n\r"));
 	LCD_clear();
-	sprintf_P(str,"Checking ECM");	
+	sprintf_P(str,PSTR("Checking ECM"));	
 	LCD_print1(str,0);
-	sprintf_P(str,"Turn Key On");
+	sprintf_P(str,PSTR("Turn Key On"));
 	LCD_print2(str,0);
 	
 	KnobRead();
 	reset=1;
+	//CommandBegin();
 	while(1)
 	{
 		INT temp; 
@@ -100,7 +106,18 @@ int main(void)
 		obdII_run(temp,reset);
 		LCD_update();
 		reset=0;
-		//printf_P("battery %f\n\r",getBattery());
+
+		//Check for command mode
+		if (uart_kbhit())
+		{
+			if (uart_getchar()=='c')
+			{
+				//enter command mode
+				CommandBegin();
+			}
+		}
+
+		//printf_P(PSTR("battery %f\n\r",getBattery());
 /*
 		if (getBattery()<10.5)
 		{
@@ -124,7 +141,7 @@ int main(void)
 			while(!done)
 			{
 				//Do menu
-				sprintf_P(str," Exit");
+				sprintf_P(str,PSTR(" Exit"));
 				if(knobtemp & 0x01)
 				{
 					 LCD_print2(str,0);
@@ -133,7 +150,7 @@ int main(void)
 					str[0]=0x7E;
 					LCD_print1(str,0);
 				}
-				sprintf_P(str," Clear Code");
+				sprintf_P(str,PSTR(" Clear Code"));
 				if(knobtemp & 0x01)
 				{
 					 str[0]=0x7E;
@@ -147,7 +164,7 @@ int main(void)
 					while(KnobSw1());
 					if(knobtemp & 0x01)
 					{
-						sprintf_P(str,"Clearing Codes");
+						sprintf_P(str,PSTR("Clearing Codes"));
 						LCD_print1(str,0);
 						sprintf_P(str," ");
 						LCD_print2(str,0);
@@ -156,20 +173,20 @@ int main(void)
 							temp=obdII_clear_codes();
 						if (temp)
 						{
-							sprintf_P(str,"Codes cleared");
+							sprintf_P(str,PSTR("Codes cleared"));
 						}
 						else
 						{
-							sprintf_P(str,"Error Clearing");
+							sprintf_P(str,PSTR("Error Clearing"));
 						}
 						LCD_print1(str,0);
 						if (temp)
 						{
-							sprintf_P(str," ");
+							sprintf_P(str,PSTR(" "));
 						}
 						else
 						{
-							sprintf_P(str,"Codes");
+							sprintf_P(str,PSTR("Codes"));
 						}
 						LCD_print2(str,0);
 						obdII_leds_off();
@@ -180,9 +197,9 @@ int main(void)
 					} else
 					{
 						done=1;
-						sprintf_P(str, "Wait");
+						sprintf_P(str, PSTR("Wait"));
 						LCD_print1(str,0);
-						sprintf_P(str, "Reading data");
+						sprintf_P(str, PSTR("Reading data"));
 						LCD_print2(str,0);
 						reset=1;
 					}

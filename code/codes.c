@@ -78,18 +78,18 @@ UDWORD PcodePrint(UDWORD code)
 		data=(data<<8) | flash_read(addr++);
 		data=(data<<8) | flash_read(addr++);
 
-		//printf_P("Current code %lu, %lX\n\r",data,data);
+		//printf_P(PSTR("Current code %lu, %lX\n\r",data,data);
 		offset=flash_read(addr++);
 		offset=(offset<<8) | flash_read(addr++);
 		offset=(offset<<8) | flash_read(addr++);
 		offset=(offset<<8) | flash_read(addr++);
 		next=addr+offset;
-		//printf_P("next is %lX = %lX(offset) + %lX(addr)\n\r",next,offset,addr);
+		//printf_P(PSTR("next is %lX = %lX(offset) + %lX(addr)\n\r",next,offset,addr);
 		if (data==code)
 		{
 			//display code on LCD
 			LCD_clear();
-			sprintf_P(str,"%c%04lu",type,code);
+			sprintf_P(str,PSTR("%c%04lu"),type,code);
 			//printf("%s",str);
 			LCD_print1(str,2);
 			i=0;
@@ -100,7 +100,7 @@ UDWORD PcodePrint(UDWORD code)
 				temp=flash_read(addr++);
 			}
 			str[i++]=0;
-			//printf_P("\t%s\n\r",str);
+			//printf_P(PSTR("\t%s\n\r",str);
 
 			LCD_print2(str,0);
 			done=1;
@@ -108,11 +108,11 @@ UDWORD PcodePrint(UDWORD code)
 		if (data==0xFFFFFFFF || data==0)
 		{
 			LCD_clear();
-			sprintf_P(str,"%c%04lu",type,code);
-			//printf_P("%s",str);
+			sprintf_P(str,PSTR("%c%04lu"),type,code);
+			//printf_P(PSTR("%s",str);
 			LCD_print1(str,2);
-			sprintf_P(str,"Undocumented %04lu",code);
-			//printf_P("\t%s\n\r",str);
+			sprintf_P(str,PSTR("Undocumented %04lu"),code);
+			//printf_P(PSTR("\t%s\n\r",str);
 			LCD_print2(str,0);
 			done=1;
 		}

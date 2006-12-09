@@ -182,7 +182,7 @@ UBYTE flash_read(UDWORD addr)
 	page=addr & FLASH_MAX_PAGES; 
 	page=page<<1;
 	
-	//printf_P("addr %lX page %lX %X\n\r",addr,page,buff_addr);
+	//printf_P(PSTR("addr %lX page %lX %X\n\r",addr,page,buff_addr);
 	//send read command
 	flash_wait();
 	FLASH_CS(0);
@@ -216,10 +216,10 @@ void flash_wait()
 		delay_us(2);
 		if(timeout>10000)
 		{
-			printf_P("ERROR: flash time out %X\n\r",status);
+			printf_P(PSTR("ERROR: flash time out %X\n\r"),status);
 			return;
 		}
-		//printf_P("status %X\n\r",status);
+		//printf_P(PSTR("status %X\n\r",status);
 	} 
 	FLASH_CS(1);
 }
@@ -326,7 +326,7 @@ UBYTE flash_erase()
 	{
 		//sprintf_P(temp,"%lu",i);
 		//LCD_print2(temp,2);
-		printf_P("Erasing Page %u\n\r",i);
+		printf_P(PSTR("Erasing Page %u\n\r"),i);
 		if (flash_erase_page(i)!=0)
 			return 1;
 	}
@@ -466,8 +466,8 @@ UBYTE Flash_serial_program(UDWORD address)
 	{
 		Xmodem_goodbye();	
 		delay_ms(500);
-		printf_P("\n\rFlashed %lu Bytes\n\r",bytes);
-		printf_P("Flash Program completed\n\r");
+		printf_P(PSTR("\n\rFlashed %lu Bytes\n\r"),bytes);
+		printf_P(PSTR("Flash Program completed\n\r"));
 		return NO_ERRORS;
 	}
    	
@@ -475,9 +475,9 @@ UBYTE Flash_serial_program(UDWORD address)
 	delay_ms(1000); //wait for host to give up
 	while(uart_kbhit())
 		uart_getchar();
-	printf_P("Flash Program ERROR %X packet=%d\n\r",ret,packet);
-	//printf_P("Packet expect %d, got %d comp %d\n\r",expected,Xpacket,Xpacket_comp);
-	printf_P("Press x to exit\n\r");
+	printf_P(PSTR("Flash Program ERROR %X packet=%d\n\r"),ret,packet);
+	//printf_P(PSTR("Packet expect %d, got %d comp %d\n\r",expected,Xpacket,Xpacket_comp);
+	printf_P(PSTR("Press x to exit\n\r"));
 	while( uart_getchar()!='x'); 
    	return ret;				//else lets return the xmodem error
 }
